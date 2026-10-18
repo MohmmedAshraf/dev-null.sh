@@ -138,6 +138,7 @@ export default function Show({
                                 {auth.user && (
                                     <UserSafetyMenu
                                         user={user}
+                                        followsYou={followsYou}
                                         isMuting={isMuting}
                                         isBlocking={false}
                                     />

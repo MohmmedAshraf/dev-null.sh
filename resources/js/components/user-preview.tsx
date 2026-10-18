@@ -373,6 +373,7 @@ function UserPreviewContent({
                             {auth.user && (
                                 <UserSafetyMenu
                                     user={user}
+                                    followsYou={data.followsYou}
                                     isMuting={data.isMuting}
                                     isBlocking={data.isBlocking}
                                     className="size-8"

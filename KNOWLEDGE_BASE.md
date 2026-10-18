@@ -91,9 +91,11 @@ Sources: [profile page](resources/js/pages/user/show.tsx), [profile settings](re
 
 Follow or unfollow from a developer's profile or a follow control elsewhere in the app. Following puts their commits in your Following log. You cannot follow yourself or follow across a block. GitHub follows are imported once: connections to developers already on /dev/null are added in both directions, with up to 1,000 GitHub connections checked each way. This is not continuous synchronization, so unfollowing someone on /dev/null sticks.
 
+To remove someone who follows you, choose **Remove follower** from the **…** menu on their profile or hover card. They are not told, it does not change whether you follow them, and they can follow you again; block them to keep them from following you.
+
 **Who to follow** suggests developers in the side column or within the log on smaller screens. Show or hide these suggestions in Settings → Appearance. You can also follow back from the notifications list.
 
-Sources: [follow import](app/Actions/CreateUserGitHubFollows.php), [appearance settings](resources/js/pages/appearance/update.tsx), [notifications page](resources/js/pages/notification/index.tsx).
+Sources: [follow import](app/Actions/CreateUserGitHubFollows.php), [removing a follower](app/Http/Controllers/UserFollowerController.php), [appearance settings](resources/js/pages/appearance/update.tsx), [notifications page](resources/js/pages/notification/index.tsx).
 
 ### Following, Latest, and Trending logs
 

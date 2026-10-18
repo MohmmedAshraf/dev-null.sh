@@ -1,7 +1,8 @@
 import { router } from '@inertiajs/react';
-import { Ban, Ellipsis, Volume2, VolumeX } from 'lucide-react';
+import { Ban, Ellipsis, UserMinus, Volume2, VolumeX } from 'lucide-react';
 import { useState } from 'react';
 import UserBlockController from '@/actions/App/Http/Controllers/UserBlockController';
+import UserFollowerController from '@/actions/App/Http/Controllers/UserFollowerController';
 import UserMuteController from '@/actions/App/Http/Controllers/UserMuteController';
 import { Button } from '@/components/ui/button';
 import {
@@ -23,12 +24,14 @@ import type { User } from '@/types';
 
 export function UserSafetyMenu({
     user,
+    followsYou,
     isMuting,
     isBlocking,
     className,
     onOpenChange,
 }: {
     user: Pick<User, 'username'>;
+    followsYou: boolean;
     isMuting: boolean;
     isBlocking: boolean;
     className?: string;
@@ -75,6 +78,18 @@ export function UserSafetyMenu({
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-52">
+                    {followsYou && (
+                        <DropdownMenuItem
+                            disabled={isSaving}
+                            onSelect={() =>
+                                visit(UserFollowerController.destroy(user))
+                            }
+                            data-test="remove-follower"
+                        >
+                            <UserMinus />
+                            Remove follower
+                        </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem
                         disabled={isSaving}
                         onSelect={() =>

@@ -72,6 +72,7 @@ use App\Http\Controllers\UserBlockController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFeedController;
 use App\Http\Controllers\UserFollowController;
+use App\Http\Controllers\UserFollowerController;
 use App\Http\Controllers\UserFollowersController;
 use App\Http\Controllers\UserFollowingController;
 use App\Http\Controllers\UserLaneController;
@@ -398,6 +399,11 @@ Route::middleware('auth')->group(function (): void {
     Route::delete('@{user:username}/follow', [UserFollowController::class, 'destroy'])
         ->middleware('throttle:follows')
         ->name('user-follow.destroy');
+
+    // User Follower...
+    Route::delete('@{user:username}/follower', [UserFollowerController::class, 'destroy'])
+        ->middleware('throttle:follows')
+        ->name('user-follower.destroy');
 
     // User Mute...
     Route::post('@{user:username}/mute', [UserMuteController::class, 'store'])
